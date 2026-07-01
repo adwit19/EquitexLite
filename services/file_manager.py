@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 
-from models import portfolio
 from models.portfolio import Portfolio
 from models.stock import Stock
 
@@ -23,7 +22,8 @@ class FileManager:
         for asset in portfolio.get_assets():
             assets.append({
                 "symbol": asset.symbol,
-                "name": asset.name
+                "name": asset.name,
+                "quantity": asset.quantity
             })
 
         FileManager.FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -42,7 +42,7 @@ class FileManager:
             assets = json.load(file)
 
         for asset in assets:
-            stock = Stock(asset["symbol"], asset["name"])
+            stock = Stock(asset["symbol"], asset["name"], asset.get("quantity", 1))
             portfolio.add_asset(stock)
 
         return portfolio

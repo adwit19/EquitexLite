@@ -36,9 +36,27 @@ def add_stock(portfolio):
     if stock_data is None:
         return
 
-    stock = Stock(stock_data["symbol"], stock_data["name"])
+    quantity = ask_stock_quantity()
+    stock = Stock(stock_data["symbol"], stock_data["name"], quantity)
     portfolio.add_asset(stock)
     print(f"{stock.symbol} added to portfolio.")
+
+
+def ask_stock_quantity():
+    while True:
+        quantity_input = input("How many shares do you own? ").strip()
+
+        try:
+            quantity = float(quantity_input)
+        except ValueError:
+            print("Please enter a valid number of shares.")
+            continue
+
+        if quantity <= 0:
+            print("Quantity must be greater than 0.")
+            continue
+
+        return quantity
 
 
 def view_portfolio(portfolio):

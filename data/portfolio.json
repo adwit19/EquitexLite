@@ -1,6 +1,7 @@
 [
     {
         "symbol": "AAPL",
-        "name": "AAPL"
+        "name": "AAPL",
+        "quantity": 1
     }
 ]
