@@ -23,7 +23,8 @@ class FileManager:
             assets.append({
                 "symbol": asset.symbol,
                 "name": asset.name,
-                "quantity": asset.quantity
+                "quantity": asset.quantity,
+                "purchase_price": getattr(asset, "purchase_price", 0.0)
             })
 
         FileManager.FILE_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -42,7 +43,12 @@ class FileManager:
             assets = json.load(file)
 
         for asset in assets:
-            stock = Stock(asset["symbol"], asset["name"], asset.get("quantity", 1))
+            stock = Stock(
+                asset["symbol"],
+                asset["name"],
+                asset.get("quantity", 1),
+                asset.get("purchase_price", 0.0)
+            )
             portfolio.add_asset(stock)
 
         return portfolio

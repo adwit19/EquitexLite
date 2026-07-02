@@ -2,6 +2,13 @@
     {
         "symbol": "AAPL",
         "name": "AAPL",
-        "quantity": 1
+        "quantity": 6.0,
+        "purchase_price": 166.66666666666666
+    },
+    {
+        "symbol": "NVDA",
+        "name": "NVDA",
+        "quantity": 10.0,
+        "purchase_price": 150.0
     }
 ]
